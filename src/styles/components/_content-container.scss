@@ -4,3 +4,12 @@
   max-width: 80rem;
 
 }
+
+
+.Column {
+  float: left;
+  width: 10%;
+  @media (max-width: $desktop-breakpoint) {
+    width: 50%;
+  }
+}

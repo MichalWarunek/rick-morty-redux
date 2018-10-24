@@ -3,12 +3,17 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import AppRouter, { history } from './routers/AppRouter';
 import configureStore from './store/configureStore';
+import { loadCharactersFromServer, nameFilter } from './actions/characters';
+import { getPages } from './actions/pages';
 import { login, logout } from './actions/auth';
 import 'normalize.css/normalize.css';
 import './styles/styles.scss';
+import 'bootstrap/dist/css/bootstrap.css';
 import 'react-dates/lib/css/_datepicker.css';
 import { firebase } from './firebase/firebase';
 import LoadingPage from './components/LoadingPage';
+
+
 
 const store = configureStore();
 const jsx = (
@@ -17,14 +22,20 @@ const jsx = (
     </Provider>
 );
 
+
 let hasRendered = false;
 const renderApp = () => {
   if (!hasRendered) {
     ReactDOM.render(jsx, document.getElementById('app'));
+    store.dispatch(loadCharactersFromServer(1));
+    // store.dispatch(nameFilter('alien'));
+    store.dispatch(getPages());
     hasRendered = true;
-  }
+    
+  }  
 };
 
+     
 ReactDOM.render(<LoadingPage />, document.getElementById('app'));
 
 
@@ -40,6 +51,7 @@ firebase.auth().onAuthStateChanged((user) => {
     renderApp();
     history.push('/');
   }
+  
 });
 
 

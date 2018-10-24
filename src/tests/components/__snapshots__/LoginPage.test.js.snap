@@ -10,11 +10,8 @@ exports[`should render LoginPage correctly 1`] = `
     <h1
       className="box-layout__title"
     >
-      Boilerplate
+      Rick and Morty
     </h1>
-    <p>
-      Tag line for app.
-    </p>
     <button
       className="button"
     >

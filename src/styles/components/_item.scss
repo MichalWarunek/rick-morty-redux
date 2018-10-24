@@ -1,0 +1,30 @@
+.item {
+  background-color: $off-white;
+  margin: 0 0 $s-size 0;
+  padding-bottom: $m-size;
+  text-align: center;
+  border-bottom-right-radius: 30px;
+  border-bottom-left-radius: 30px;
+ 
+  
+}
+.item-image {
+  width: 100%;
+  border-top-left-radius: 30px;
+  border-top-right-radius: 30px;
+}
+.item-properties {
+  margin: 0 $s-size 0 $s-size;
+  display: flex;
+  justify-content: space-between;
+  border-top: 1px solid #6f6f6f;
+  color: #6f6f6f;
+}
+.item-property {
+  color: #007bff;
+}
+
+.add-image {
+  width: 100%;
+  border-radius: 30px;
+}
