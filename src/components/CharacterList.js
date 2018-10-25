@@ -24,7 +24,7 @@ const CharacterList = (props) => (
         
       }
       
-      <Col md="2" sm="4" xs="5">
+      <Col md="2" sm="4" xs="6">
         <div className="add-character-button">
           <Link to={`/create`}>
             <img className="add-image" src="/images/add.jpg" 

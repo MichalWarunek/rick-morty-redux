@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 const CharacterListItem = ({id, image, name, status, species, gender }) => (
  
 
-  <Col md="2" sm="4" xs="5">
+  <Col md="2" sm="4" xs="6">
     <Link to={`/edit/${id}`}>
       <img className="item-image" src={image}/>
     </Link>
