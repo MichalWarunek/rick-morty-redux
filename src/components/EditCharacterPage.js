@@ -13,7 +13,7 @@ export class EditCharacterPage extends React.Component {
             <div>
               <div className="page_header">
                 <div className="content-container">
-                  <h1 className="page-header_title">Edit Character</h1>
+                  <h1 className="page-header__title">Edit Character</h1>
                 </div>
               </div>
             <div className="content-container">

@@ -1,43 +1,88 @@
 import React from 'react';
-import Select, { components } from 'react-select';
 import { connect } from 'react-redux';
+import AsyncSelect from 'react-select/lib/Async';
+import { components } from 'react-select';
+import { nameFilter } from '../actions/characters';
+import { Link } from 'react-router-dom';
+
+export class Search extends React.Component {
+
+  state = {
+    menuIsOpen: false
+  }
+
+loadThumbnails = ({ children, ...props}) => {
+    return (
+      <Link 
+        to={`/edit/${props.data.id}`}  
+        style={{ textDecoration: 'none' }}
+      >
+        <components.Option {...props}>
+          <img className="search-thumbnail" src={props.data.image} />{' '}
+          {children}
+        </components.Option> 
+      </Link>
+    );
+  };
 
 
-const loadThumbnails = (props) => {
-  
-return (
-    <components.Option {...props}>
-    <img className="search-thumbnail" src={props.value} />{' '}
-    {props.children}
-    </components.Option> 
+filterOptions = (inputValue) => 
+  this.props.characters.map((character) => 
+  {
+    return {
+      value: character.name,
+      label: character.name,
+      image: character.image,
+      id:character.id
+    }
+  })
+  .filter(i =>
+    i.label.toLowerCase().includes(inputValue.toLowerCase())
   );
+
+loadOptions = (inputValue, callback) => {
+  setTimeout(() => {
+    callback(this.filterOptions(inputValue));
+}, 500);
+};
+  
+onChangeValue = (newValue) => {
+  const inputValue = newValue.replace(/\W/g, '');
+  this.setState({ inputValue });
+  this.props.nameFilter(inputValue);
 };
 
+handleCloseMenu = () => {
+  this.setState(({
+    menuIsOpen: false,
+  }))
+  input.onBlur(input.value)
+};
 
-const onChangeValue = (props) => (
-  console.log(props.label)
-);
+handleOpenMenu = () => {
+  this.setState(({
+    menuIsOpen: true,
+  }))
+  input.onBlur(input.value)
+};
 
-
-
-const Search = ({characters}) => (
-  <div className="container">
-    <Select 
-    className="search-input"
-    onChange={onChangeValue}
-    components={{ Option: loadThumbnails }}
-    options={ 
-      characters.map((character) => 
-      {
-        return {
-          value: character.image,
-          label: character.name
-        }
-      })}
-    placeholder="Search..."
+render() {
+  return (
+   <div className="container">
+    <AsyncSelect 
+      className="search-input"
+      components={{ Option: this.loadThumbnails }}
+      onFocus={this.handleOpenMenu}
+      onBlur={this.handleCloseMenu}
+      menuIsOpen={this.state.menuIsOpen}
+      loadOptions={this.loadOptions}
+      defaultOptions
+      onInputChange={this.onChangeValue}
+      placeholder="Search..."
     />
-  </div>
-);
+  </div>    
+  )};
+};
 
 const mapStateToProps = (state) => {
   return {
@@ -45,5 +90,8 @@ const mapStateToProps = (state) => {
   };
 };
 
+const mapDispatchToProps = dispatch => ({
+  nameFilter: (name) => dispatch(nameFilter(name))
+});
 
-export default connect(mapStateToProps)(Search);
+export default connect(mapStateToProps, mapDispatchToProps)(Search);

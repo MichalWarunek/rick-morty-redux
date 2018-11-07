@@ -12,7 +12,7 @@ export class AddCharacterPage extends React.Component {
             <div>
               <div className="page_header">
                 <div className="content-container">
-                  <h1 className="page-header_title">Add Character</h1>
+                  <h1 className="page-header__title">Add Character</h1>
                 </div>
               </div>
             <div className="content-container">

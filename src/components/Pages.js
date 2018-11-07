@@ -12,8 +12,8 @@ import { loadCharactersFromServer } from '../actions/characters';
       <Pagination size="lg" aria-label="Page navigation example">
         <PaginationItem className="pagination">
           <Button color="primary"
-          onClick = {() => setCurrentPage(previousPage)}
-          disabled={currentPage==1}
+            onClick = {() => setCurrentPage(previousPage)}
+            disabled={currentPage==1}
           >
           Previous
           </Button>
@@ -32,9 +32,9 @@ import { loadCharactersFromServer } from '../actions/characters';
           }
           <Button color="primary"
             onClick = {() => setCurrentPage(nextPage)}
-            disabled={currentPage==25}
+            disabled={currentPage==pages.length}
             >
-            Next 
+            Next
           </Button>
         </PaginationItem>
       </Pagination>
@@ -53,7 +53,7 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) => ({
-  setCurrentPage: (pageNumber) => {
+    setCurrentPage: (pageNumber) => {
     dispatch(getPageInfo(pageNumber));
     dispatch(loadCharactersFromServer(pageNumber));
   }

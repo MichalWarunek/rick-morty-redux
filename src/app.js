@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import AppRouter, { history } from './routers/AppRouter';
 import configureStore from './store/configureStore';
-import { loadCharactersFromServer, nameFilter } from './actions/characters';
+import { loadCharactersFromServer } from './actions/characters';
 import { getPages } from './actions/pages';
 import { login, logout } from './actions/auth';
 import 'normalize.css/normalize.css';
@@ -28,7 +28,6 @@ const renderApp = () => {
   if (!hasRendered) {
     ReactDOM.render(jsx, document.getElementById('app'));
     store.dispatch(loadCharactersFromServer(1));
-    // store.dispatch(nameFilter('alien'));
     store.dispatch(getPages());
     hasRendered = true;
     

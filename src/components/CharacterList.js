@@ -14,6 +14,8 @@ const CharacterList = (props) => (
       {
         props.characters.length === 0 ? (
           <p className="form__error">No characters</p>
+          
+          
         ) : (
           props.characters.map((character) => {
             return <CharacterListItem key={character.id} {...character} />;

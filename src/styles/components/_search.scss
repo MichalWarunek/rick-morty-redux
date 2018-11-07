@@ -1,9 +1,10 @@
-.search-input {
-  font-size: $m-size;
+.search-text {
+  text-decoration: none; 
 }
 .search-thumbnail {
   width: 40px;
 }
 .search-input {
   margin: $s-size 0  $s-size 0;
+  font-size: $m-size;
 }

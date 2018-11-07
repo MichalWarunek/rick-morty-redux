@@ -31,7 +31,7 @@ render() {
           <input 
           type="text"
           className="text-input" 
-          placeholder="Search by name..."
+          placeholder="Search on page..."
           value={this.props.filters.text} 
           onChange = {this.onTextChange}/>
         </div>
